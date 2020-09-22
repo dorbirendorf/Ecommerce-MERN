@@ -1,0 +1,132 @@
+name: se-workshop pipe
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x]
+#        node-version: [10.x, 8.x]
+
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install API
+        run: |
+          cd se-workshop-20-interfaces
+          npm install
+          cd ..
+      #      - name: Install Client
+      #        run: |
+      #          cd client
+      #          npm install
+      #          cd ..
+      - name: Install Websocket
+        run: |
+          cd communication/websocket
+          npm install
+          npm i @types/node
+          cd ../..
+      - name: Install Publisher
+        run: |
+          cd publisher
+          npm install
+          cd ..
+      - name: Install Domain
+        run: |
+          cd backend
+          cd domain
+          npm install
+          cd ..
+          cd ..
+      - name: Install Service
+        run: |
+          cd backend
+          cd service
+          npm install
+          cd ..
+          cd ..
+      - name: Install HTTP
+        run: |
+          cd communication/http
+          npm install
+          cd ../..
+      - name: Install AT
+        run: |
+          cd AT
+          npm install
+          cd ..
+      - name: Compile API
+        run: |
+          cd se-workshop-20-interfaces
+          npm run comp
+          cd ..
+      #      - name: Install Client
+      #        run: |
+      #          cd client
+      #          npm install
+      #          cd ..
+      - name: Compile Websocket
+        run: |
+          cd communication/websocket
+          npm run comp
+          cd ../..
+      - name: Compile Publisher
+        run: |
+          cd publisher
+          npm run comp
+          cd ..
+      - name: Compile Domain
+        run: |
+          cd backend
+          cd domain
+          npm run comp
+          cd ..
+          cd ..
+      - name: Compile Service
+        run: |
+          cd backend
+          cd service
+          npm run comp
+          cd ..
+          cd ..
+      - name: Compile HTTP
+        run: |
+          cd communication/http
+          npm run comp
+          cd ..
+      - name: Start MongoDB
+        run: |
+          sudo service mongod start
+      #      - name: Compile AT
+      #        run: |
+      #          cd AT
+      #          npm run comp
+      #          cd ..
+      - name: Unit Tests
+        run: |
+          cd backend
+          cd domain
+          npm run test:cov
+          cd ..
+          cd ..
+#      - name: Integration Tests
+#        run: |
+#          cd backend
+#          cd service
+#          npm run test
+#          cd ..
+#          cd ..
+#      - name: Acceptance Tests
+#        run: |
+#          cd AT
+#          npm test
+#          cd ..

@@ -1,0 +1,26 @@
+init:
+  username: "A1"
+  password: "password"
+users:
+  -
+    username: "U1"
+    password: "password"
+  -
+    username: "U2"
+    password: "password"
+  -
+    username: "U11"
+    password: "password"
+  -
+    username: "U12"
+    password: "password"
+  -
+    username: "U13"
+    password: "password"
+stores:
+  -
+    storeName: "S2"
+    owner: "U11"
+    items:
+    managers:
+    owners:

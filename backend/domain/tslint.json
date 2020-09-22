@@ -1,0 +1,17 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {
+        "no-trailing-whitespace": false,
+        "no-shadowed-variable": false
+    },
+    "rules": {
+        "no-console": false,
+        "unified-signatures": false,
+        "no-trailing-whitespace": false,
+        "no-shadowed-variable": false
+    },
+    "rulesDirectory": []
+}

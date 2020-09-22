@@ -1,0 +1,37 @@
+{
+  "name": "at_tests",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "comp": "tsc",
+    "start": "tsc && node dist/AT/index.js",
+    "test": "SILENT=1 jest --maxWorkers=1 --forceExit --detectOpenHandles",
+    "test:clear": "jest --clearCache",
+    "test:silent": "TEST_MODE=1 SILENT=1 jest",
+    "test:watch": "npm t -- --watch",
+    "clear": "cd ../backend/domain && rm -rf node_modules dist && npm i && cd ../service && rm -rf node_modules dist && npm i && npm run start:comp && cd ../../at && rm -rf node_modules dist && npm i && npm run start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tsc": "^1.20150623.0",
+    "service_layer": "file:../backend/service",
+    "se-workshop-20-interfaces": "file:../se-workshop-20-interfaces"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.5",
+    "mongoose": "^5.9.16",
+    "jest": "^25.2.7",
+    "ts-jest": "^25.3.0",
+    "shelljs": "0.8.4",
+    "tslint": "^6.1.1",
+    "typescript": "^3.8.3"
+  },
+  "keywords": [],
+  "description": "",
+  "jest": {
+    "testPathIgnorePatterns": [
+      "__tests__/mocks"
+    ]
+  }
+}

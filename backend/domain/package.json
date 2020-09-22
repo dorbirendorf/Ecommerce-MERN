@@ -1,0 +1,43 @@
+{
+  "name": "domain_layer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "comp": "tsc && cp server.cert ./dist/ && cp server.key ./dist/ && cp dropall.sh ./dist/ ",
+    "start": "tsc && node dist/index.js",
+    "start:silent": "tsc && SILENT=1 node dist/index.js",
+    "debug": "tsc && DEBUG=1 node dist/index.js ",
+    "test": "TEST_MODE=1 jest --maxWorkers=1 --forceExit --detectOpenHandles",
+    "test:ch": "TEST_MODE=1 SILENT=1 jest --maxWorkers=1 -o",
+    "test:silent": "TEST_MODE=1 SILENT=1 jest --maxWorkers=1",
+    "test:clear": "jest --maxWorkers=1 --clearCache",
+    "test:cov": "MONGODB_URI=mongodb://localhost:27017/dev-trading-system-db jest --maxWorkers=1 --coverage --forceExit --detectOpenHandles",
+    "test:watch": "npm t -- --watch",
+    "clean": "rm -rf dist",
+    "clean:hard": "rm -rf dist && rm -rf logs"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^25.1.5",
+    "@types/node": "^13.11.0",
+    "jest": "^25.2.7",
+    "ts-jest": "^25.3.0",
+    "tslint": "^6.1.1",
+    "typescript": "^3.8.3",
+    "winston": "^3.2.1"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcrypt": "^4.0.1",
+    "dal": "file:../../data-access",
+    "mongoose-in-memory-autocomplete": "^1.2.3",
+    "publisher": "file:../../publisher",
+    "se-workshop-20-interfaces": "file:../../se-workshop-20-interfaces",
+    "shelljs": "0.8.4",
+    "uuid": "^7.0.3",
+    "winston-daily-rotate-file": "^4.4.2"
+  }
+}
